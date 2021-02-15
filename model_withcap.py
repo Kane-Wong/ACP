@@ -193,8 +193,9 @@ class ImaLoc:
         incorect_rate_soft = tf.divide(tf.reduce_sum(tf.abs(bias), axis = -1),self.sequence_len_capdoc)
         return incorect_rate_hard, incorect_rate_soft, bias, mask_pri
             
-    def get_feed_dict(self, text_dir, captions_dir, img_dir, filenames):
-        text, _, imgs, la, sequence_len_sent, _, sequence_len_text, sequence_len_capdoc = batch_normalize(text_dir, captions_dir, img_dir, filenames)
+    def get_feed_dict(self, text_dir, captions_dir, img_dir, filenames, sen_maxlen, emb_size):
+        text, _, imgs, la, sequence_len_sent, _, sequence_len_text, sequence_len_capdoc = batch_normalize(text_dir, captions_dir, img_dir,
+                                                                                                          filenames, sen_maxlen, emb_size)
       
         fd = {
             self.text: text,
